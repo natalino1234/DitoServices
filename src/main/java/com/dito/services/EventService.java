@@ -19,6 +19,8 @@ public class EventService {
 
 	@Autowired
 	private EventRepository eventRepository;
+	
+	private final int QTD_EVENTOS_MAIS_OCORRIDOS = 5;
 
 	public List<Event> listar() {
 		List<Event> events = new ArrayList<Event>();
@@ -45,7 +47,7 @@ public class EventService {
 	}
 	
 	public List<Event> buscar(String texto) throws EventServiceException {
-		List<Event> event = eventRepository.findAutocomplete(texto);
+		List<Event> event = eventRepository.findAutocomplete(texto,QTD_EVENTOS_MAIS_OCORRIDOS);
 
 		if (event == null) {
 			throw new EventServiceException("Não existe esta event cadastrada");

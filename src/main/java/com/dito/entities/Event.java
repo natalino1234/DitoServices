@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 
 @Entity
 @Component
-@Table(name = "task")
+@Table(name = "event")
 public class Event implements Serializable {
 
 	/**

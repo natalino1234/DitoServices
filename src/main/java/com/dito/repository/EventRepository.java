@@ -10,6 +10,6 @@ import com.dito.entities.Event;
 
 @Repository
 public interface EventRepository extends CrudRepository<Event, Long>{
-	@Query(value = "select * from EVENT where EVENT = ?1", nativeQuery = true)
-    ArrayList<Event> findAutocomplete(String eventName);
+	@Query(value = "select event, count(event) from EVENT where EVENT like concat('%',?1) group by count(event) order by count(event) desc LIMIT ?2", nativeQuery = true)
+    ArrayList<Event> findAutocomplete(String eventName, int maisOcorridos);
 }
